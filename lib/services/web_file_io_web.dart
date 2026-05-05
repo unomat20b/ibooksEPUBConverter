@@ -2,7 +2,6 @@
 
 import 'dart:async';
 import 'dart:html' as html;
-import 'dart:js_util' as js_util;
 import 'dart:typed_data';
 
 import 'epub_models.dart';
@@ -59,8 +58,7 @@ void downloadBytes({
 }
 
 String _relativePath(html.File file) {
-  final raw = js_util.getProperty<Object?>(file, 'webkitRelativePath');
-  final rel = raw?.toString() ?? '';
+  final rel = file.relativePath ?? '';
   return rel.isNotEmpty ? rel : file.name;
 }
 

@@ -1,4 +1,4 @@
-# Сборка Flutter Web и выкладка в …/public_html/projects/upubconverter на Timeweb.
+# Сборка Flutter Web и выкладка в …/public_html/projects/epubconverter на Timeweb.
 # Секреты: TIMEWEB_SSH_KEY, TIMEWEB_HOST, TIMEWEB_USER, TIMEWEB_REMOTE_PATH.
 
 name: Build Flutter web and deploy to Timeweb
@@ -17,7 +17,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: timeweb-upubconverter-web
+  group: timeweb-epubconverter-web
   cancel-in-progress: true
 
 jobs:
@@ -41,7 +41,7 @@ jobs:
 
       - name: Build web
         run: |
-          flutter build web --base-href /projects/upubconverter/
+          flutter build web --base-href /projects/epubconverter/
 
       - name: SSH key and known_hosts
         env:
@@ -69,7 +69,7 @@ jobs:
             exit 1
           fi
 
-      - name: Rsync build/web → Timeweb …/projects/upubconverter
+      - name: Rsync build/web → Timeweb …/projects/epubconverter
         env:
           REMOTE: ${{ secrets.TIMEWEB_USER }}@${{ secrets.TIMEWEB_HOST }}
           RPATH: ${{ secrets.TIMEWEB_REMOTE_PATH }}
@@ -78,4 +78,4 @@ jobs:
           test -n "$RPATH"
           rsync -avz --delete \
             -e "ssh -i $HOME/.ssh/timeweb_deploy -o IdentitiesOnly=yes -o BatchMode=yes" \
-            build/web/ "$REMOTE:$RPATH/projects/upubconverter/"
+            build/web/ "$REMOTE:$RPATH/projects/epubconverter/"

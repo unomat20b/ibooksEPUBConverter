@@ -13,11 +13,11 @@ Apple Books иногда отдаёт книгу как распакованны
 GitHub Actions собирает:
 
 ```bash
-flutter build web --base-href /projects/upubconverter/
+flutter build web --base-href /projects/epubconverter/
 ```
 
 и выкладывает `build/web/` в:
 
 ```text
-$TIMEWEB_REMOTE_PATH/projects/upubconverter/
+$TIMEWEB_REMOTE_PATH/projects/epubconverter/
 ```
